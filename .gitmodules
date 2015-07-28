@@ -1,0 +1,3 @@
+[submodule "sync-engine"]
+	path = sync-engine
+	url = https://github.com/nylas/sync-engine.git
