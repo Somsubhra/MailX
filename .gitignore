@@ -1,0 +1,84 @@
+# Inbox-specific
+/packer_cache
+/log
+/man
+# Vagrant
+/.vagrant
+/Vagrantfile.local
+/Vagrantfile.local.d
+node_modules
+*.py[cod]
+*.dat
+.DS_Store
+# C extensions
+*.so
+/tests/log
+/tests/output
+/tests/coverage
+htmlcov
+/cache
+/config.json
+
+# location for editable pip installs
+/src
+
+# virtualenv
+/include
+/local
+bin/py*
+bin/nose*
+bin/coverage*
+bin/activate*
+bin/easy*
+bin/pip*
+bin/pep8
+bin/ndg_httpclient
+bin/mprof
+bin/zerorpc
+bin/symilar
+bin/f2py
+bin/epylint
+
+# Packages
+*.egg
+*.egg-info
+dist
+build
+eggs
+parts
+var
+sdist
+develop-eggs
+.installed.cfg
+lib
+lib64
+__pycache__
+
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
+/.hypothesis
+.coverage
+.tox
+nosetests.xml
+
+# Translations
+*.mo
+
+# Mr Developer
+.mr.developer.cfg
+.project
+.pydevproject
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+
+# ctags
+tags
+TAGS
+
+# directory used to store build files
+setup/
