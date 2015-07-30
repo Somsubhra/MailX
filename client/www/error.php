@@ -1,7 +1,19 @@
+<?php
+$messageString = "";
+
+switch($_GET["code"]) {
+    case "DB_CONN_ERR":
+        $messageString = "We are having problems accessing our data!";
+        break;
+    default:
+        $messageString = "Something broke!";
+        break;
+}
+?>
 <html>
 <head>
     <title>
-        MailX - Login
+        MailX - Error
     </title>
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
@@ -11,12 +23,7 @@
 <div class="pure-g">
     <div class="pure-u-1-4"></div>
     <div class="pure-u-1-2 margin-top-200">
-        <h1>MailX - Login</h1>
-        <form method="post" action="x/login.php" class="pure-form">
-            <input type="email" placeholder="Email address" name="email" id="email" required class="pure-input-rounded">
-            <input type="password" placeholder="Password" name="password" id="password" required class="pure-input-rounded">
-            <input type="submit" value="Go MailX!" class="pure-button pure-button-primary rounded-button">
-        </form>
+        <h1><?php echo $messageString ?></h1>
     </div>
     <div class="pure-u-1-4"></div>
 </div>
