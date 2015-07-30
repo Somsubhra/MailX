@@ -16,7 +16,7 @@ if($db->connect_errno > 0) {
     exit();
 }
 
-if(!($auth_statement = $db->prepare("SELECT COUNT(*) FROM mailx_account WHERE name = ? AND password = ?"))) {
+if(!($auth_statement = $db->prepare("SELECT id FROM mailx_account WHERE name = ? AND password = ?"))) {
     header("location: ../error.php?code=DB_ERR");
     exit();
 }
@@ -31,22 +31,30 @@ if(!$auth_statement->execute()) {
     exit();
 }
 
-$auth_count = 0;
-$out_auth_count = NULL;
+$account_id = -1;
+$out_account_id = NULL;
 
-if(!$auth_statement->bind_result($out_auth_count)) {
+if(!$auth_statement->bind_result($out_account_id)) {
     header("location: ../error.php?code=DB_ERR");
     exit();
 }
 
 while($auth_statement->fetch()) {
-    $auth_count = $out_auth_count;
+    $account_id = $out_account_id;
 }
 
-if($auth_count != 1) {
+if($account_id == -1) {
+    session_start();
+    $_SESSION["LOGIN_ERROR"] = "Please enter correct username and password.";
+    session_write_close();
     header("location: ../index.php");
     exit();
 }
+
+session_start();
+$_SESSION["MAILX_ID"] = $account_id;
+$_SESSION["LOGGED_IN"] = "true";
+session_write_close();
 
 header("location: ../home.php");
 

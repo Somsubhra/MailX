@@ -1,3 +1,12 @@
+<?php
+session_start();
+if(isset($_SESSION["LOGGED_IN"])) {
+    if($_SESSION["LOGGED_IN"] == "true") {
+        header("location: home.php");
+        exit();
+    }
+}
+?>
 <html>
 <head>
     <title>
@@ -12,6 +21,12 @@
     <div class="pure-u-1-4"></div>
     <div class="pure-u-1-2 margin-top-200">
         <h1>MailX - Login</h1>
+        <?php
+        if(isset($_SESSION["LOGIN_ERROR"])) {
+            echo "<div class='error'>" . $_SESSION["LOGIN_ERROR"] . "</div>";
+        }
+        session_destroy();
+        ?>
         <form method="post" action="x/login.php" class="pure-form">
             <input type="text" placeholder="MailX Name" name="name" id="name" required class="pure-input-rounded">
             <input type="password" placeholder="Password" name="password" id="password" required class="pure-input-rounded">
