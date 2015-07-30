@@ -2,7 +2,7 @@
 $messageString = "";
 
 switch($_GET["code"]) {
-    case "DB_CONN_ERR":
+    case "DB_ERR":
         $messageString = "We are having problems accessing our data!";
         break;
     default:

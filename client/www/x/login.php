@@ -11,5 +11,6 @@ $password = $_POST["password"];
 $db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 if($db->connect_errno > 0) {
-    header("../error.php?code=DB_CONN_ERR");
+    header("../error.php?code=DB_ERR");
 }
+
