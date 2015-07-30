@@ -52,7 +52,7 @@ foreach($json_result as $json_record) {
 
 $count_statement->close();
 
-if(!($insert_statement = $db->prepare("INSERT INTO email_namespace_mapping (email_address, namespace_id) VALUES(?, ?)"))) {
+if(!($insert_statement = $db->prepare("INSERT INTO email_namespace_mapping (email_address, namespace_id) VALUES (?, ?)"))) {
 	die("Insert statement preparation failed: " . $insert_statement->error . "\n");
 }
 
