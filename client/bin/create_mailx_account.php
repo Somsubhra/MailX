@@ -46,6 +46,8 @@ if($account_count != 0) {
 	die("Account name already exists\n");
 }
 
+$count_statement->close();
+
 if(!($insert_statement = $db->prepare("INSERT INTO mailx_account (name, password) VALUES (?, ?)"))) {
 	die("Insert statement preparation failed: " . $insert_statement->error . "\n");
 }
