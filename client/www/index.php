@@ -13,7 +13,7 @@
     <div class="pure-u-1-2 margin-top-200">
         <h1>MailX - Login</h1>
         <form method="post" action="x/login.php" class="pure-form">
-            <input type="email" placeholder="Email address" name="email" id="email" required class="pure-input-rounded">
+            <input type="text" placeholder="MailX Name" name="name" id="name" required class="pure-input-rounded">
             <input type="password" placeholder="Password" name="password" id="password" required class="pure-input-rounded">
             <input type="submit" value="Go MailX!" class="pure-button pure-button-primary rounded-button">
         </form>

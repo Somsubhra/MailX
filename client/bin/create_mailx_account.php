@@ -10,7 +10,7 @@ if(sizeof($argv) < 3) {
 echo "Adding new MailX account\n";
 
 $account_name = $argv[1];
-$accont_password = $argv[2];
+$account_password = $argv[2];
 
 $db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
