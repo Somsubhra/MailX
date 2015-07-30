@@ -15,7 +15,9 @@ if($db->connect_errno > 0) {
 }
 
 foreach($json_result as $json_record) {
-	// var_dump($json_record);
+	var_dump($json_record);
 }
+
+$db->close();
 
 echo "Exiting...\n";
