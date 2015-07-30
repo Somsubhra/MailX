@@ -1,0 +1,21 @@
+html * {
+	font-family: 'Roboto', sans-serif;
+}
+
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
+    font-family: 'Roboto', sans-serif;
+}
+
+.error {
+	color: rgba(217, 30, 24, 1.0);
+	margin-bottom: 10px;
+}
+
+.margin-top-200 {
+	margin-top: 200px;
+}
+
+.rounded-button {
+	border-radius: 20px;
+}
