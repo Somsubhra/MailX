@@ -26,7 +26,7 @@ $account_id = $_SESSION["MAILX_ID"];
 <div class="pure-g">
     <div class="pure-u-1-4"></div>
     <div class="pure-u-1-2 margin-top-200">
-        <h1>MailX</h1>
+        <h1>MailX | <a href="logout.php">Logout</a></h1>
     </div>
     <div class="pure-u-1-4"></div>
 </div>
