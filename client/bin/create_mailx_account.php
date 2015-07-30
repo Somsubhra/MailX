@@ -1,6 +1,17 @@
 #!/usr/bin/env php
 <?php
 include "../etc/config.php";
+
+function generate_api_key($length = 16) {
+	$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	$characters_length = strlen($characters);
+	$random_string = '';
+	for ($i = 0; $i < $length; $i++) {
+		$random_string .= $characters[rand(0, $characters_length - 1)];
+	}
+	return $random_string;
+}
+
 error_reporting(E_ERROR | E_PARSE);
 
 if(sizeof($argv) < 3) {
@@ -48,11 +59,11 @@ if($account_count != 0) {
 
 $count_statement->close();
 
-if(!($insert_statement = $db->prepare("INSERT INTO mailx_account (name, password) VALUES (?, ?)"))) {
+if(!($insert_statement = $db->prepare("INSERT INTO mailx_account (name, password, api_key) VALUES (?, ?, ?)"))) {
 	die("Insert statement preparation failed: " . $insert_statement->error . "\n");
 }
 
-if(!$insert_statement->bind_param("ss", $account_name, hash('sha512', $account_password))) {
+if(!$insert_statement->bind_param("sss", $account_name, hash('sha512', $account_password), generate_api_key())) {
 	die("Parameters binding on insert statement failed: " . $insert_statement->error . "\n");
 }
 
