@@ -40,14 +40,8 @@ if($db->connect_errno > 0) {
 $account = get_account_from_api_key($api_key, $db);
 $namespace_id = $account["namespace_id"];
 
-$threads_json_content = file_get_contents(API_ROOT . "n/" . $namespace_id .  "/threads?limit=$limit&offset=$offset");
+$threads_json_content = file_get_contents(API_ROOT . "n/$namespace_id/threads?limit=$limit&offset=$offset");
 $threads_json = json_decode($threads_json_content);
-
-usort($threads, function($thread1, $thread2) {
-    $ts1 = $thread1->last_message_timestamp;
-    $ts2 = $thread2->last_message_timestamp;
-    return $ts2 - $ts1;
-});
 
 echo json_encode(array(
     "success" => true,
