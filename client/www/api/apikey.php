@@ -1,6 +1,6 @@
 <?php
 /**
- * /api/apikey.php?emailaddress=<emailaddress>&password=<password>
+ * /api/apikey.php?email_address=<email_address>&password=<password>
  */
 
 header("Content-Type: application/json");
@@ -8,11 +8,11 @@ header("Content-Type: application/json");
 include "../../etc/config.php";
 include "libs/error.php";
 
-if(!isset($_GET["emailaddress"]) || !isset($_GET["password"])) {
+if(!isset($_GET["email_address"]) || !isset($_GET["password"])) {
     show_invalid_params_error();
 }
 
-$account_email_address = $_GET["emailaddress"];
+$account_email_address = $_GET["email_address"];
 $account_password = $_GET["password"];
 
 $db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
