@@ -13,6 +13,8 @@ if(!isset($_GET["api_key"])) {
     show_invalid_key_error();
 }
 
+$api_key = $_GET["api_key"];
+
 $limit = 20;
 
 if(isset($_GET["limit"])) {
@@ -28,8 +30,6 @@ if(isset($_GET["offset"])) {
         $offset = $_GET["offset"];
     }
 }
-
-$api_key = $_GET["api_key"];
 
 $db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
