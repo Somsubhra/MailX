@@ -21,36 +21,13 @@ if($db->connect_errno > 0) {
     show_db_error();
 }
 
-$account_id = get_account_id_from_api_key($api_key, $db);
-
-if(!($select_statement = $db->prepare("SELECT name FROM mailx_account WHERE id = ?"))) {
-    show_db_error();
-}
-
-if(!$select_statement->bind_param("s", $account_id)) {
-    show_db_error();
-}
-
-if(!$select_statement->execute()) {
-    show_db_error();
-}
-
-$account_name = "";
-$out_account_name = NULL;
-
-if(!$select_statement->bind_result($out_account_name)) {
-    show_db_error();
-}
-
-while($select_statement->fetch()) {
-    $account_name = $out_account_name;
-}
+$account = get_account_from_api_key($api_key, $db);
 
 echo json_encode(array(
     "success" => true,
     "body" => array(
         "message" => "Ground zero!",
-        "requester" => $account_name
+        "requester" => $account["email_address"]
     )
 ));
 
