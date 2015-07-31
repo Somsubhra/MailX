@@ -1,4 +1,8 @@
 <?php
+/**
+ * POST /api/send.php?api_key=<api_key>&message=<message>
+ */
+
 header("Content-Type: application/json");
 
 include "../../etc/config.php";
