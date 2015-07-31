@@ -46,11 +46,22 @@ while($select_statement->fetch()) {
     array_push($namespace_ids, $out_namespace_id);
 }
 
+$threads = array();
+
+foreach($namespace_ids as $namespace_id) {
+    $threads_json_content = file_get_contents(API_ROOT . "n/" . $namespace_id .  "/threads");
+    $threads_json = json_decode($threads_json_content);
+
+    foreach($threads_json as $thread) {
+        array_push($threads, $thread);
+    }
+}
+
 echo json_encode(array(
     "success" => true,
     "body" => array(
         "namespace_ids" => $namespace_ids,
-        "threads" => array()
+        "threads" => $threads
     )
 ));
 
