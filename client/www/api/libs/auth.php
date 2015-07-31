@@ -7,7 +7,7 @@
  */
 function get_account_id_from_api_key($api_key, $db) {
 
-    while(!($select_statement = $db->prepare("SELECT id FROM mailx_account WHERE api_key = ?"))) {
+    while(!($select_statement = $db->prepare("SELECT id FROM account WHERE api_key = ?"))) {
         header("location: ../error.php?code=DB_ERR");
         exit();
     }
