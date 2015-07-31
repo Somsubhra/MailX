@@ -2,7 +2,7 @@
 include "../../etc/config.php";
 error_reporting(E_ERROR | E_PARSE);
 
-if(!isset($_POST["name"]) && !isset($_POST["password"])) {
+if(!isset($_POST["emailaddress"]) && !isset($_POST["password"])) {
 	header("location: ../index.php");
 }
 
@@ -45,7 +45,7 @@ while($auth_statement->fetch()) {
 
 if($account_id == -1) {
     session_start();
-    $_SESSION["LOGIN_ERROR"] = "Please enter correct username and password.";
+    $_SESSION["LOGIN_ERROR"] = "Please enter correct email and password.";
     session_write_close();
     header("location: ../index.php");
     exit();
@@ -53,7 +53,7 @@ if($account_id == -1) {
 
 session_start();
 $_SESSION["MAILX_ID"] = $account_id;
-$_SESSION["LOGGED_IN"] = "true";
+$_SESSION["MAILX_LOGGED_IN"] = "true";
 session_write_close();
 
 header("location: ../home.php");

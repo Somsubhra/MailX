@@ -1,7 +1,7 @@
 <?php
 session_start();
-if(isset($_SESSION["LOGGED_IN"])) {
-    if($_SESSION["LOGGED_IN"] == "true") {
+if(isset($_SESSION["MAILX_LOGGED_IN"])) {
+    if($_SESSION["MAILX_LOGGED_IN"] == "true") {
         header("location: home.php");
         exit();
     }
@@ -28,7 +28,7 @@ if(isset($_SESSION["LOGGED_IN"])) {
         session_destroy();
         ?>
         <form method="post" action="x/login.php" class="pure-form">
-            <input type="text" placeholder="MailX Name" name="name" id="name" required class="pure-input-rounded">
+            <input type="email" placeholder="Email Address" name="emailaddress" id="emailaddress" required class="pure-input-rounded">
             <input type="password" placeholder="Password" name="password" id="password" required class="pure-input-rounded">
             <input type="submit" value="Go MailX!" class="pure-button pure-button-primary rounded-button">
         </form>

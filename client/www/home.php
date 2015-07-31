@@ -3,11 +3,11 @@ include "../etc/config.php";
 
 session_start();
 
-if(!isset($_SESSION["LOGGED_IN"])) {
+if(!isset($_SESSION["MAILX_LOGGED_IN"])) {
     header("location: index.php");
 }
 
-if($_SESSION["LOGGED_IN"] !=  "true") {
+if($_SESSION["MAILX_LOGGED_IN"] !=  "true") {
     header("location: index.php");
 }
 $account_id = $_SESSION["MAILX_ID"];
