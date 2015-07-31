@@ -1,4 +1,8 @@
 <?php
+/**
+ * /api/apikey.php?name=<name>&password=<password>
+ */
+
 header("Content-Type: application/json");
 
 include "../../etc/config.php";

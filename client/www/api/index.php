@@ -1,4 +1,8 @@
 <?php
+/**
+ * /api/index.php?api_key=<api_key>
+ */
+
 header("Content-Type: application/json");
 
 include "../../etc/config.php";
