@@ -37,41 +37,11 @@ if($db->connect_errno > 0) {
     show_db_error();
 }
 
-$account_id = get_account_id_from_api_key($api_key, $db);
+$account = get_account_from_api_key($api_key, $db);
+$namespace_id = $account["namespace_id"];
 
-if(!($select_statement = $db->prepare("SELECT namespace_id FROM email_namespace_mapping WHERE mailx_account_id = ?"))) {
-    show_db_error();
-}
-
-if(!$select_statement->bind_param("s", $account_id)) {
-    show_db_error();
-}
-
-if(!$select_statement->execute()) {
-    show_db_error();
-}
-
-$namespace_ids = array();
-$out_namespace_id = NULL;
-
-if(!$select_statement->bind_result($out_namespace_id)) {
-    show_db_error();
-}
-
-while($select_statement->fetch()) {
-    array_push($namespace_ids, $out_namespace_id);
-}
-
-$threads = array();
-
-foreach($namespace_ids as $namespace_id) {
-    $threads_json_content = file_get_contents(API_ROOT . "n/" . $namespace_id .  "/threads");
-    $threads_json = json_decode($threads_json_content);
-
-    foreach($threads_json as $thread) {
-        array_push($threads, $thread);
-    }
-}
+$threads_json_content = file_get_contents(API_ROOT . "n/" . $namespace_id .  "/threads");
+$threads_json = json_decode($threads_json_content);
 
 usort($threads, function($thread1, $thread2) {
     $ts1 = $thread1->last_message_timestamp;
@@ -82,7 +52,7 @@ usort($threads, function($thread1, $thread2) {
 echo json_encode(array(
     "success" => true,
     "body" => array(
-        "threads" => $threads
+        "threads" => $threads_json
     )
 ));
 
