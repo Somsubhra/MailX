@@ -57,6 +57,12 @@ foreach($namespace_ids as $namespace_id) {
     }
 }
 
+usort($threads, function($thread1, $thread2) {
+    $ts1 = $thread1->last_message_timestamp;
+    $ts2 = $thread2->last_message_timestamp;
+    return $ts2 - $ts1;
+});
+
 echo json_encode(array(
     "success" => true,
     "body" => array(
