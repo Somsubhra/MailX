@@ -16,3 +16,7 @@ function show_db_error() {
 function show_invalid_key_error() {
     show_error("Invalid API key");
 }
+
+function show_invalid_params_error() {
+    show_error("Invalid parameters");
+}
