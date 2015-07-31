@@ -60,7 +60,6 @@ foreach($namespace_ids as $namespace_id) {
 echo json_encode(array(
     "success" => true,
     "body" => array(
-        "namespace_ids" => $namespace_ids,
         "threads" => $threads
     )
 ));
