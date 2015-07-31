@@ -6,7 +6,7 @@ if(!isset($_POST["name"]) && !isset($_POST["password"])) {
 	header("location: ../index.php");
 }
 
-$name = $_POST["name"];
+$email_address = $_POST["emailaddress"];
 $password = $_POST["password"];
 
 $db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
@@ -16,12 +16,12 @@ if($db->connect_errno > 0) {
     exit();
 }
 
-if(!($auth_statement = $db->prepare("SELECT id FROM mailx_account WHERE name = ? AND password = ?"))) {
+if(!($auth_statement = $db->prepare("SELECT id FROM account WHERE email_address = ? AND password = ?"))) {
     header("location: ../error.php?code=DB_ERR");
     exit();
 }
 
-if(!$auth_statement->bind_param("ss", $name, hash('sha512', $password))) {
+if(!$auth_statement->bind_param("ss", $email_address, hash('sha512', $password))) {
     header("location: ../error.php?code=DB_ERR");
     exit();
 }
