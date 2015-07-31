@@ -14,7 +14,7 @@ if($db->connect_errno > 0) {
 	die("Unable to connect to MailX database: " . $db->connect_error);
 }
 
-if(!($count_statement = $db->prepare("SELECT COUNT(*) FROM email_namespace_mapping WHERE email_address = ? AND namespace_id = ?"))) {
+if(!($count_statement = $db->prepare("SELECT COUNT(*) FROM account WHERE email_address = ? AND namespace_id = ?"))) {
 	die("Count statement preparation failed: " . $count_statement->error . "\n");
 }
 
@@ -52,12 +52,17 @@ foreach($json_result as $json_record) {
 
 $count_statement->close();
 
-if(!($insert_statement = $db->prepare("INSERT INTO email_namespace_mapping (email_address, namespace_id) VALUES (?, ?)"))) {
+if(!($insert_statement = $db->prepare("INSERT INTO account (email_address, namespace_id, password, api_key) VALUES (?, ?, ?, ?)"))) {
 	die("Insert statement preparation failed: " . $insert_statement->error . "\n");
 }
 
+// TODO: Generate default password and send it to the email address
+function generate_default_password() {
+	return "123";
+}
+
 foreach ($new_email_namespace_mappings as $email_address => $namespace_id) {
-	if(!$insert_statement->bind_param("ss", $email_address, $namespace_id)) {
+	if(!$insert_statement->bind_param("ssss", $email_address, $namespace_id, hash("sha512", generate_default_password()), md5(uniqid($email_address, true)))) {
 		die("Parameters binding on insert statement failed: " . $insert_statement->error . "\n");
 	}
 
