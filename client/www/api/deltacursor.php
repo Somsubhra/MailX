@@ -24,4 +24,23 @@ if($db->connect_errno > 0) {
 $account = get_account_from_api_key($api_key, $db);
 $namespace_id = $account["namespace_id"];
 
+$ch = curl_init(API_ROOT . "n/$namespace_id/delta/generate_cursor");
+curl_setopt_array($ch, array(
+    CURLOPT_POST => TRUE,
+    CURLOPT_RETURNTRANSFER => TRUE
+));
+
+$response = curl_exec($ch);
+
+if($response == FALSE) {
+    show_error("cURL error");
+}
+
+echo json_encode(array(
+    "success" => true,
+    "body" => array(
+        "cursor" => $response
+    )
+));
+
 $db->close();
