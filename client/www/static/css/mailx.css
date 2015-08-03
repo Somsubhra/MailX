@@ -57,6 +57,7 @@ html, button, input, select, textarea,
 	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 	font-size: 12px;
 	cursor: hand;
+	cursor: pointer;
 }
 
 .contact:hover {
