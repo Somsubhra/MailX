@@ -31,5 +31,4 @@ echo json_encode(array(
     )
 ));
 
-$select_statement->close();
 $db->close();
