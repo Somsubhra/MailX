@@ -13,7 +13,6 @@ function get_contact_display_name(contact) {
 }
 
 function load_contacts() {
-    console.log("Contacts API key: " + api_key);
     $.get("api/contacts.php",
         {
             api_key: api_key
@@ -28,5 +27,5 @@ function load_contacts() {
 }
 
 function load_preview() {
-    console.log("Preview API key: " + api_key);
+    
 }
