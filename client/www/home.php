@@ -27,11 +27,12 @@ $api_key = $_GET["MAILX_API_KEY"];
 </head>
 <body>
 <div class="pure-g">
-    <div class="pure-u-1-4"></div>
-    <div class="pure-u-1-2 margin-top-200">
-        <h1>MailX | <a href="logout.php">Logout</a></h1>
+    <div class="pure-u-6-24" id="preview-pane"></div>
+    <div class="pure-u-14-24" id="view-pane">
     </div>
-    <div class="pure-u-1-4"></div>
+    <div class="pure-u-3-24" id="contacts-pane">
+        <h1 id="logo">MailX</h1>
+    </div>
 </div>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="static/js/mailx.js"></script>

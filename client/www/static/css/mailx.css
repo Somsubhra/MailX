@@ -19,3 +19,18 @@ html, button, input, select, textarea,
 .rounded-button {
 	border-radius: 20px;
 }
+
+#logo {
+	padding: 5px 20px 5px 20px;
+}
+
+#preview-pane {
+	background: rgba(0, 0, 0, 0.1);
+	border-right: 1px solid rgba(0, 0, 0, 0.2);
+	height: 100%;
+}
+
+#contacts-pane {
+	border-left: 1px solid rgba(0, 0, 0, 0.2);
+	height: 100%;
+}
