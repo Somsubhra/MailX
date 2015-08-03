@@ -22,7 +22,7 @@ function load_contacts() {
             var num_contacts = contacts.length;
 
             for(var i = 0; i < num_contacts; i++) {
-                console.log(get_contact_display_name(contacts[i]));
+                $("#contacts-box").append("<div class='contact'>" + get_contact_display_name(contacts[i]) + "</div>");
             }
         }, "json");
 }

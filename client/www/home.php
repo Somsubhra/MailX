@@ -31,6 +31,10 @@ $api_key = $_SESSION["MAILX_API_KEY"];
     </div>
     <div class="pure-u-4-24" id="contacts-pane">
         <h1 id="logo">MailX</h1>
+        <h5 id="contacts-lbl">&#183; Contacts &#183;</h5>
+        <div id="contacts-box">
+
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
