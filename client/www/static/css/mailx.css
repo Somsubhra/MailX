@@ -28,9 +28,15 @@ html, button, input, select, textarea,
 	background: rgba(0, 0, 0, 0.1);
 	border-right: 1px solid rgba(0, 0, 0, 0.2);
 	height: 100%;
+	overflow: auto;
+}
+
+#view-pane {
+	overflow: auto;
 }
 
 #contacts-pane {
 	border-left: 1px solid rgba(0, 0, 0, 0.2);
 	height: 100%;
+	overflow: auto;
 }

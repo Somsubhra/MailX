@@ -27,9 +27,9 @@ $api_key = $_SESSION["MAILX_API_KEY"];
 <body>
 <div class="pure-g">
     <div class="pure-u-6-24" id="preview-pane"></div>
-    <div class="pure-u-14-24" id="view-pane">
+    <div class="pure-u-13-24" id="view-pane">
     </div>
-    <div class="pure-u-3-24" id="contacts-pane">
+    <div class="pure-u-4-24" id="contacts-pane">
         <h1 id="logo">MailX</h1>
     </div>
 </div>
