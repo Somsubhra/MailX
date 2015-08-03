@@ -8,6 +8,8 @@ header("Content-Type: application/json");
 include "../../etc/config.php";
 include "libs/error.php";
 
+error_reporting(E_ERROR | E_PARSE);
+
 if(!isset($_GET["email_address"]) || !isset($_GET["password"])) {
     show_invalid_params_error();
 }

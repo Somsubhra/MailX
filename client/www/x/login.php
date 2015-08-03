@@ -1,5 +1,6 @@
 <?php
 include "../../etc/config.php";
+
 error_reporting(E_ERROR | E_PARSE);
 
 if(!isset($_POST["emailaddress"]) && !isset($_POST["password"])) {

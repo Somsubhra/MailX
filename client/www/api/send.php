@@ -9,6 +9,8 @@ include "../../etc/config.php";
 include "libs/auth.php";
 include "libs/error.php";
 
+error_reporting(E_ERROR | E_PARSE);
+
 if(!isset($_POST["api_key"])) {
     show_invalid_key_error();
 }
