@@ -53,9 +53,12 @@ html, button, input, select, textarea,
 }
 
 .contact {
-	padding-bottom: 10px;
-	padding-top: 10px;
+	padding: 10px 10px 10px 10px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 	font-size: 12px;
 	cursor: hand;
+}
+
+.contact:hover {
+	background: rgba(0, 0, 0, 0.05);
 }
