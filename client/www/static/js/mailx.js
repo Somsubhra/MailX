@@ -27,5 +27,11 @@ function load_contacts() {
 }
 
 function load_preview() {
-    
+    $.get("api/threads.php",
+        {
+            api_key: api_key
+        }, function(data) {
+            var threads = data.body.threads;
+            console.log(threads);
+        }, "json");
 }
