@@ -12,6 +12,12 @@ function get_contact_display_name(contact) {
     return contact.name;
 }
 
+function get_thread_preview(thread) {
+    var result = "<div class='thread-subject'>" + thread.subject + "</div>";
+    result += "<div class='thread-snippet'>" + thread.snippet + "...</div>";
+    return result;
+}
+
 function load_contacts() {
     $.get("api/contacts.php",
         {
@@ -32,6 +38,11 @@ function load_preview() {
             api_key: api_key
         }, function(data) {
             var threads = data.body.threads;
-            console.log(threads);
+            var num_threads = threads.length;
+
+            for(var i = 0; i < num_threads; i++) {
+                console.log(threads[i]);
+                $("#preview-box").append("<div class='thread'>" + get_thread_preview(threads[i]) + "</div>");
+            }
         }, "json");
 }
