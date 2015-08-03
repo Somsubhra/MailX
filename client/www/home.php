@@ -13,9 +13,8 @@ if($_SESSION["MAILX_LOGGED_IN"] !=  "true") {
     header("location: index.php");
 }
 
-$api_key = $_GET["MAILX_API_KEY"];
+$api_key = $_SESSION["MAILX_API_KEY"];
 ?>
-
 <html>
 <head>
     <title>
@@ -36,6 +35,14 @@ $api_key = $_GET["MAILX_API_KEY"];
 </div>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="static/js/mailx.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        set_api_key('<?php echo $api_key ?>', function() {
+            load_contacts();
+            load_preview();
+        });
+    });
+</script>
 </body>
 </html>
 
