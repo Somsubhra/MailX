@@ -17,7 +17,7 @@ if($db->connect_errno > 0) {
     exit();
 }
 
-if(!($auth_statement = $db->prepare("SELECT id FROM account WHERE email_address = ? AND password = ?"))) {
+if(!($auth_statement = $db->prepare("SELECT id, api_key FROM account WHERE email_address = ? AND password = ?"))) {
     header("location: ../error.php?code=DB_ERR");
     exit();
 }
@@ -35,13 +35,17 @@ if(!$auth_statement->execute()) {
 $account_id = -1;
 $out_account_id = NULL;
 
-if(!$auth_statement->bind_result($out_account_id)) {
+$api_key = -1;
+$out_api_key = NULL;
+
+if(!$auth_statement->bind_result($out_account_id, $out_api_key)) {
     header("location: ../error.php?code=DB_ERR");
     exit();
 }
 
 while($auth_statement->fetch()) {
     $account_id = $out_account_id;
+    $api_key = $out_api_key;
 }
 
 if($account_id == -1) {
@@ -54,7 +58,9 @@ if($account_id == -1) {
 
 session_start();
 $_SESSION["MAILX_ID"] = $account_id;
+$_SESSION["MAILX_API_KEY"] = $api_key;
 $_SESSION["MAILX_LOGGED_IN"] = "true";
+
 session_write_close();
 
 header("location: ../home.php");

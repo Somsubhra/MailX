@@ -12,7 +12,8 @@ if(!isset($_SESSION["MAILX_LOGGED_IN"])) {
 if($_SESSION["MAILX_LOGGED_IN"] !=  "true") {
     header("location: index.php");
 }
-$account_id = $_SESSION["MAILX_ID"];
+
+$api_key = $_GET["MAILX_API_KEY"];
 ?>
 
 <html>
