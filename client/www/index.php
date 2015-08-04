@@ -22,7 +22,7 @@ if(isset($_SESSION["MAILX_LOGGED_IN"])) {
 <div class="pure-g">
     <div class="pure-u-1-4"></div>
     <div class="pure-u-1-2 margin-top-200">
-        <h1>MailX - Login</h1>
+        <h1 style="color: rgba(0, 0, 0, 0.6)">MailX - Login</h1>
         <?php
         if(isset($_SESSION["LOGIN_ERROR"])) {
             echo "<div class='error'>" . $_SESSION["LOGIN_ERROR"] . "</div>";
