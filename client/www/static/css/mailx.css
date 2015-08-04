@@ -92,7 +92,7 @@ html, button, input, select, textarea,
 
 .thread-participants {
 	font-size: 12px;
-	color: rgba(65, 131, 215, 1.0);
+	color: rgba(0, 0, 0, 0.7);
 	font-weight: 600;
 	display: inline;
 }
