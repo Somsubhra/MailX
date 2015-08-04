@@ -45,7 +45,8 @@ $api_key = $_SESSION["MAILX_API_KEY"];
             load_account_details(function() {
                 load_contacts();
                 load_preview();
-            })
+                activate_event_listeners();
+            });
         });
     });
 </script>

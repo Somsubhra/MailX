@@ -135,3 +135,9 @@ function load_view(thread_id) {
             console.log(messages);
         }, "json");
 }
+
+function activate_event_listeners() {
+    $("#preview-box").on("click", '.thread', function() {
+        load_view($(this).attr("data-id"));
+    });
+}
