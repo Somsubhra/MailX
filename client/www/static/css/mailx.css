@@ -22,6 +22,7 @@ html, button, input, select, textarea,
 
 #logo {
 	padding: 5px 20px 5px 20px;
+	color: rgba(0, 0, 0, 0.5);
 }
 
 #preview-pane {
@@ -95,14 +96,14 @@ html, button, input, select, textarea,
 
 .thread-participants {
 	font-size: 12px;
-	color: rgba(0, 0, 0, 0.7);
+	color: rgba(0, 0, 0, 0.6);
 	font-weight: 600;
 	display: inline;
 }
 
 .thread-subject {
 	font-size: 12px;
-	color: rgba(0, 0, 0, 0.5);
+	color: rgba(0, 0, 0, 0.4);
 	font-weight: 600;
 }
 
@@ -122,4 +123,20 @@ html, button, input, select, textarea,
 	color: rgba(0, 0, 0, 0.3);
 	display: inline;
 	float: right;
+}
+
+#page-logo-lbl {
+	font-size: 108px;
+	color: rgba(0, 0, 0, 0.05);
+	text-align: center;
+}
+
+#no-selection-lbl {
+	font-size: 36px;
+	color: rgba(0, 0, 0, 0.2);
+	text-align: center;
+}
+
+#placeholder {
+	margin-top: 170px;
 }
