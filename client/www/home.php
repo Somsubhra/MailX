@@ -42,8 +42,10 @@ $api_key = $_SESSION["MAILX_API_KEY"];
 <script type="text/javascript">
     $(document).ready(function() {
         set_api_key('<?php echo $api_key ?>', function() {
-            load_contacts();
-            load_preview();
+            load_account_details(function() {
+                load_contacts();
+                load_preview();
+            })
         });
     });
 </script>
