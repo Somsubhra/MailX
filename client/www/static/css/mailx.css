@@ -131,6 +131,10 @@ html, button, input, select, textarea,
 	text-align: center;
 }
 
+#page-logo-lbl:hover {
+	color: rgba(0, 0, 0, 0.1);
+}
+
 #no-selection-lbl {
 	font-size: 36px;
 	color: rgba(0, 0, 0, 0.2);
