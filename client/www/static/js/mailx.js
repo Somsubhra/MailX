@@ -82,7 +82,6 @@ function load_preview() {
             var num_threads = threads.length;
 
             for(var i = 0; i < num_threads; i++) {
-                console.log(threads[i]);
                 $("#preview-box").append("<div class='thread'>" + get_thread_preview(threads[i]) + "</div>");
             }
         }, "json");
