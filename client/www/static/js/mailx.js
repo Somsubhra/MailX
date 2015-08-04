@@ -13,7 +13,20 @@ function get_contact_display_name(contact) {
 }
 
 function get_thread_preview(thread) {
-    var result = "<div class='thread-subject'>" + thread.subject + "</div>";
+    var result = "";
+
+    var participants = thread.participants;
+    var num_participants = participants.length;
+    var participants_string = "";
+    for(var i = 0; i < num_participants; i++) {
+        participants_string += get_contact_display_name(participants[i]);
+        if(i != num_participants - 1) {
+            participants_string += ", ";
+        }
+    }
+
+    result += "<div class='thread-participants'>" + participants_string + "</div>";
+    result += "<div class='thread-subject'>" + thread.subject + "</div>";
     result += "<div class='thread-snippet'>" + thread.snippet + "...</div>";
     return result;
 }
