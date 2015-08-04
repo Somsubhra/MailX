@@ -27,17 +27,20 @@ html, button, input, select, textarea,
 #preview-pane {
 	border-right: 1px solid rgba(0, 0, 0, 0.2);
 	height: 100%;
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 #view-pane {
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 #contacts-pane {
 	border-left: 1px solid rgba(0, 0, 0, 0.2);
 	height: 100%;
-	overflow: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 #contacts-lbl {
