@@ -98,5 +98,11 @@ html, button, input, select, textarea,
 
 .thread-snippet {
 	font-size: 11px;
-	color: rgba(0, 0, 0, 0.3);
+	color: rgba(0, 0, 0, 0.4);
+}
+
+.num-thread-participants {
+	font-size: 10px;
+	font-weight: 500;
+	color: rgba(0, 0, 0, 0.4);
 }

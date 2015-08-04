@@ -8,6 +8,13 @@ function set_api_key(param_api_key, callback) {
     callback();
 }
 
+function shorten_string(string, length) {
+    if(string.length > length) {
+        return string.substring(0, length) + "...";
+    }
+    return string;
+}
+
 function get_contact_display_name(contact) {
     if(contact.name == "") {
         return contact.email;
@@ -30,7 +37,8 @@ function get_participants_string(participants) {
 
 function get_thread_preview(thread) {
     var result = "";
-    result += "<div class='thread-participants'>" + get_participants_string(thread.participants) + "</div>";
+    result += "<div class='thread-participants'>" + shorten_string(get_participants_string(thread.participants), 30) +
+        " <span class='num-thread-participants'>(" + thread.participants.length + " participants)</span></div>";
     result += "<div class='thread-subject'>" + thread.subject + "</div>";
     result += "<div class='thread-snippet'>" + thread.snippet + "...</div>";
     return result;
