@@ -121,3 +121,17 @@ function load_preview() {
             }
         }, "json");
 }
+
+function load_view(thread_id) {
+    $.get("api/messages.php",
+        {
+            api_key: api_key,
+            thread_id: thread_id
+        }, function(data) {
+            if(!data.success) {
+                return;
+            }
+            var messages = data.body.messages;
+            console.log(messages);
+        }, "json");
+}
