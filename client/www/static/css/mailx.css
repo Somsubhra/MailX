@@ -25,7 +25,6 @@ html, button, input, select, textarea,
 }
 
 #preview-pane {
-	background: rgba(0, 0, 0, 0.1);
 	border-right: 1px solid rgba(0, 0, 0, 0.2);
 	height: 100%;
 	overflow: auto;
@@ -79,8 +78,16 @@ html, button, input, select, textarea,
 	cursor: pointer;
 }
 
+.unread-thread {
+	background: rgba(0, 0, 0, 0.0);
+}
+
+.read-thread {
+	background: rgba(0, 0, 0, 0.05);
+}
+
 .thread:hover {
-	background: rgba(0, 0, 0, 0.15);
+	background: rgba(0, 0, 0, 0.1);
 }
 
 .thread-participants {

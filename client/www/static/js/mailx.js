@@ -90,7 +90,13 @@ function load_preview() {
             var num_threads = threads.length;
 
             for(var i = 0; i < num_threads; i++) {
-                $("#preview-box").append("<div class='thread'>" + get_thread_preview(threads[i]) + "</div>");
+                if(threads[i].unread == true) {
+                    var el_class = "unread-thread";
+                } else {
+                    el_class = "read-thread"
+                }
+
+                $("#preview-box").append("<div class='thread " + el_class + "'>" + get_thread_preview(threads[i]) + "</div>");
             }
         }, "json");
 }
