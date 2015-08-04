@@ -15,6 +15,12 @@ function shorten_string(string, length) {
     return string;
 }
 
+function get_safe_html(html) {
+    $(html).find('script').remove();
+    console.log(html);
+    return html;
+}
+
 function timestamp_to_localtime(timestamp) {
     var d = new Date(timestamp * 1000),
         yyyy = d.getFullYear(),
@@ -139,7 +145,7 @@ function load_view(thread_id) {
             var num_messages = messages.length;
 
             for(var i = 0; i < num_messages; i++) {
-                $("#message-box").append(messages[i].body);
+                $("#message-box").append(get_safe_html(messages[i].body));
             }
         }, "json");
 }
