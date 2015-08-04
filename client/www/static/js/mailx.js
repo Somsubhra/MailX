@@ -30,7 +30,6 @@ function get_participants_string(participants) {
 
 function get_thread_preview(thread) {
     var result = "";
-
     result += "<div class='thread-participants'>" + get_participants_string(thread.participants) + "</div>";
     result += "<div class='thread-subject'>" + thread.subject + "</div>";
     result += "<div class='thread-snippet'>" + thread.snippet + "...</div>";
@@ -42,6 +41,9 @@ function load_account_details(callback) {
         {
             api_key: api_key
         }, function(data) {
+            if(!data.success) {
+                return;
+            }
             var account = data.body.account;
             account_email_address = account.email_address;
             account_name = account.name;
@@ -56,6 +58,9 @@ function load_contacts() {
         {
             api_key: api_key
         }, function(data) {
+            if(!data.success) {
+                return;
+            }
             var contacts = data.body.contacts;
             var num_contacts = contacts.length;
 
@@ -70,6 +75,9 @@ function load_preview() {
         {
             api_key: api_key
         }, function(data) {
+            if(!data.success) {
+                return;
+            }
             var threads = data.body.threads;
             var num_threads = threads.length;
 
