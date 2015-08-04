@@ -17,7 +17,6 @@ function shorten_string(string, length) {
 
 function get_safe_html(html) {
     $(html).find('script').remove();
-    console.log(html);
     return html;
 }
 
