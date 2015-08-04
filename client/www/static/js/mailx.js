@@ -117,7 +117,7 @@ function load_preview() {
                     el_class = "read-thread"
                 }
 
-                $("#preview-box").append("<div class='thread " + el_class + "'>" + get_thread_preview(threads[i]) + "</div>");
+                $("#preview-box").append("<div data-id='" + threads[i].id + "' class='thread " + el_class + "'>" + get_thread_preview(threads[i]) + "</div>");
             }
         }, "json");
 }
