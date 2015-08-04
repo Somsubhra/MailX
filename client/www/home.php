@@ -34,6 +34,7 @@ $api_key = $_SESSION["MAILX_API_KEY"];
             <div id="page-logo-lbl">MailX</div>
             <div id="no-selection-lbl">No threads have been selected</div>
         </div>
+        <div id="message-box"></div>
     </div>
     <div class="pure-u-4-24" id="contacts-pane">
         <h1 id="logo">MailX</h1>

@@ -123,6 +123,8 @@ function load_preview() {
 }
 
 function load_view(thread_id) {
+    $("#placeholder").show();
+    $("#message-box").html("");
     $.get("api/messages.php",
         {
             api_key: api_key,
@@ -131,8 +133,14 @@ function load_view(thread_id) {
             if(!data.success) {
                 return;
             }
+
+            $("#placeholder").hide();
             var messages = data.body.messages;
-            console.log(messages);
+            var num_messages = messages.length;
+
+            for(var i = 0; i < num_messages; i++) {
+                $("#message-box").append(messages[i].body);
+            }
         }, "json");
 }
 
