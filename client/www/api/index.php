@@ -24,12 +24,15 @@ if($db->connect_errno > 0) {
 }
 
 $account = get_account_from_api_key($api_key, $db);
+$namespace_id = $account["namespace_id"];
+
+$account_json_content = file_get_contents(API_ROOT . "n/$namespace_id");
+$account_json = json_decode($account_json_content);
 
 echo json_encode(array(
     "success" => true,
     "body" => array(
-        "message" => "Ground zero!",
-        "requester" => $account["email_address"]
+        "account" => $account_json
     )
 ));
 
