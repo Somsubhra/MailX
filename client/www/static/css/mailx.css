@@ -94,7 +94,7 @@ html, button, input, select, textarea,
 	font-size: 12px;
 	color: rgba(65, 131, 215, 1.0);
 	font-weight: 600;
-	margin-bottom: 5px;
+	display: inline;
 }
 
 .thread-subject {
@@ -112,4 +112,11 @@ html, button, input, select, textarea,
 	font-size: 10px;
 	font-weight: 500;
 	color: rgba(0, 0, 0, 0.4);
+}
+
+.thread-time {
+	font-size: 10px;
+	color: rgba(0, 0, 0, 0.3);
+	display: inline;
+	float: right;
 }

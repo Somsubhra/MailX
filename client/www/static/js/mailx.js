@@ -31,7 +31,7 @@ function timestamp_to_localtime(timestamp) {
     } else if (hh == 0) {
         h = 12;
     }
-    time = yyyy + '-' + mm + '-' + dd + ', ' + h + ':' + min + ' ' + ampm;
+    time = yyyy + '-' + mm + '-' + dd + ' | ' + h + ':' + min + ' ' + ampm;
     return time;
 }
 
@@ -57,8 +57,9 @@ function get_participants_string(participants) {
 
 function get_thread_preview(thread) {
     var result = "";
-    result += "<div class='thread-participants'>" + shorten_string(get_participants_string(thread.participants), 30) +
-        " <span class='num-thread-participants'>(" + thread.participants.length + " participants)</span></div>";
+    result += "<div class='thread-participants'>" + shorten_string(get_participants_string(thread.participants), 25) +
+        " <span class='num-thread-participants'>(" + thread.participants.length + " people)</span></div>";
+    result += "<div class='thread-time'>" + timestamp_to_localtime(thread.last_message_timestamp) + "</div>";
     result += "<div class='thread-subject'>" + thread.subject + "</div>";
     result += "<div class='thread-snippet'>" + thread.snippet + "...</div>";
     return result;
