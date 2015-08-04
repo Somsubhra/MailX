@@ -145,7 +145,7 @@ function load_view(thread_id) {
             var num_messages = messages.length;
 
             for(var i = 0; i < num_messages; i++) {
-                $("#message-box").append(get_safe_html(messages[i].body));
+                $("#message-box").append("<div class='message'>" + get_safe_html(messages[i].body) + "</div>");
             }
         }, "json");
 }
