@@ -7,6 +7,36 @@ html, button, input, select, textarea,
     font-family: 'Roboto', sans-serif;
 }
 
+::-webkit-scrollbar-button {
+	height: 0;
+	width: 0;
+}
+
+::-webkit-scrollbar-track {
+	background-clip: padding-box;
+	border: solid transparent;
+	border-width: 0 0 0 4px;
+}
+
+::-webkit-scrollbar-corner {
+	background: transparent;
+}
+
+::-webkit-scrollbar {
+	height: 16px;
+	overflow: visible;
+	width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgba(0, 0, 0, 0.1);
+	background-clip: padding-box;
+	border: 1px solid transparent;
+	border-radius: 5px;
+	min-height: 28px;
+	padding: 100px 0 0;
+}
+
 .error {
 	color: rgba(217, 30, 24, 1.0);
 	margin-bottom: 10px;
