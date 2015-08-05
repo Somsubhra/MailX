@@ -70,6 +70,25 @@ function get_thread_preview(thread) {
     return result;
 }
 
+function get_message_view(message) {
+    var result = "";
+
+    var sender_string = "";
+    var num_senders = message.from.length;
+    for(var i = 0; i < num_senders; i++) {
+        sender_string += get_contact_display_name(message.from[i]);
+    }
+    sender_string.replace(/(^\s*,)|(,\s*$)/g, '');
+
+    result = "<div class='message-header'>";
+    result += "<div class='message-subject'>" + message.subject + "</div>";
+    result += "<div class='message-sender-time'>On " + timestamp_to_localtime(message.date) + ", " + sender_string + " wrote...</div>";
+    result += "</div>";
+
+    result += get_safe_html(message.body);
+    return result;
+}
+
 function load_account_details(callback) {
     $.get("api/index.php",
         {
@@ -148,7 +167,7 @@ function load_view(thread_id) {
             var num_messages = messages.length;
 
             for(var i = 0; i < num_messages; i++) {
-                $("#message-box").append("<div class='message'>" + get_safe_html(messages[i].body) + "</div>");
+                $("#message-box").append("<div class='message'>" + get_message_view(messages[i]) + "</div>");
             }
         }, "json");
 }

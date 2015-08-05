@@ -150,6 +150,8 @@ html, button, input, select, textarea,
 	font-size: 12px;
 	color: rgba(0, 0, 0, 0.4);
 	font-weight: 600;
+	margin-top: 5px;
+	margin-bottom: 2px;
 }
 
 .thread-snippet {
@@ -198,7 +200,7 @@ html, button, input, select, textarea,
 
 .message {
 	border: 1px solid rgba(0, 0, 0, 0.1);
-	padding: 10px;
+	padding: 20px;
 	border-radius: 3px;
 	margin-bottom: 20px;
 	background: rgba(255, 255 ,255 ,1.0);
@@ -206,4 +208,23 @@ html, button, input, select, textarea,
 
 #send-box {
 	margin-bottom: 10px;
+}
+
+.message-header {
+	margin-bottom: 10px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.message-sender-time {
+	font-size: 12px;
+	font-weight: 700;
+	color: rgba(0, 0, 0, 0.4);
+	margin-bottom: 5px;
+}
+
+.message-subject {
+	font-size: 12px;
+	font-weight: 700;
+	color: rgba(0, 0, 0, 0.6);
+	margin-bottom: 5px;
 }
