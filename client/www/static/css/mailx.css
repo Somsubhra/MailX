@@ -65,7 +65,19 @@ html, button, input, select, textarea,
 #view-pane {
 	overflow-y: auto;
 	overflow-x: hidden;
-	height: 100%;
+	height: 85%;
+}
+
+#send-box {
+	height: 15%;
+}
+
+#send-input {
+	margin: 10px;
+	width: 97%;
+	resize: none;
+	font-size: 12px;
+	height: 60px;
 }
 
 #contacts-pane {
@@ -187,4 +199,8 @@ html, button, input, select, textarea,
 	padding: 10px;
 	border-radius: 3px;
 	margin-bottom: 20px;
+}
+
+#send-box {
+	margin-bottom: 10px;
 }

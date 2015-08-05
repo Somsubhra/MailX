@@ -128,8 +128,9 @@ function load_preview() {
 }
 
 function load_view(thread_id) {
-    $("#placeholder").show();
-    $("#message-box").html("");
+    var message_box = $("#message-box");
+    message_box.html("");
+
     $.get("api/messages.php",
         {
             api_key: api_key,
@@ -140,6 +141,9 @@ function load_view(thread_id) {
             }
 
             $("#placeholder").hide();
+            message_box.show();
+            $("#send-box").show();
+
             var messages = data.body.messages;
             var num_messages = messages.length;
 

@@ -29,12 +29,17 @@ $api_key = $_SESSION["MAILX_API_KEY"];
     <div class="pure-u-6-24" id="preview-pane">
         <div id="preview-box"></div>
     </div>
-    <div class="pure-u-13-24" id="view-pane">
-        <div id="placeholder">
-            <div id="page-logo-lbl">MailX</div>
-            <div id="no-selection-lbl">No threads have been selected</div>
+    <div class="pure-u-13-24" id="center-pane">
+        <div class="pure-u-24-24" id="view-pane">
+            <div id="placeholder">
+                <div id="page-logo-lbl">MailX</div>
+                <div id="no-selection-lbl">No threads have been selected</div>
+            </div>
+            <div id="message-box"></div>
         </div>
-        <div id="message-box"></div>
+        <div class="pure-u-24-24 pure-form" id="send-pane">
+            <textarea class="pure-input" id="send-input" placeholder="Enter your message to send"></textarea>
+        </div>
     </div>
     <div class="pure-u-4-24" id="contacts-pane">
         <h1 id="logo">MailX</h1>
@@ -46,6 +51,8 @@ $api_key = $_SESSION["MAILX_API_KEY"];
 <script type="text/javascript" src="static/js/mailx.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+        $("#send-box").hide();
+        $("#message-box").hide();
         set_api_key('<?php echo $api_key ?>', function() {
             load_account_details(function() {
                 load_contacts();
