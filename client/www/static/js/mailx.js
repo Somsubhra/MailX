@@ -167,8 +167,11 @@ function load_view(thread_id) {
             var num_messages = messages.length;
 
             for(var i = 0; i < num_messages; i++) {
-                $("#message-box").append("<div class='message'>" + get_message_view(messages[i]) + "</div>");
+                $("#message-box").append("<div class='message'>" + get_message_view(messages[num_messages - i - 1]) + "</div>");
             }
+
+            var view_pane = $("#view-pane");
+            view_pane.scrollTop(view_pane.prop("scrollHeight"));
         }, "json");
 }
 
