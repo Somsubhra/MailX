@@ -36,7 +36,7 @@ function timestamp_to_localtime(timestamp) {
     } else if (hh == 0) {
         h = 12;
     }
-    time = yyyy + '-' + mm + '-' + dd + ' | ' + h + ':' + min + ' ' + ampm;
+    time = yyyy + '-' + mm + '-' + dd + ' at ' + h + ':' + min + ' ' + ampm;
     return time;
 }
 
