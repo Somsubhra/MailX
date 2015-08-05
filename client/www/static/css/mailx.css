@@ -127,6 +127,10 @@ html, button, input, select, textarea,
 	cursor: pointer;
 }
 
+.thread:hover {
+	background: rgba(0, 0, 0, 0.1);
+}
+
 .unread-thread {
 	background: rgba(0, 0, 0, 0.05);
 }
@@ -136,11 +140,11 @@ html, button, input, select, textarea,
 }
 
 .selected-thread {
-	background: rgba(255, 255 ,255 ,1.0);
+	background: rgba(255 ,255, 255, 1.0);
 }
 
-.thread:hover {
-	background: rgba(0, 0, 0, 0.1);
+.selected-thread:hover {
+	background: rgba(255 ,255, 255, 1.0);
 }
 
 .thread-participants {
