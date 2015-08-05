@@ -29,7 +29,7 @@ $api_key = $_SESSION["MAILX_API_KEY"];
     <div class="pure-u-6-24" id="preview-pane">
         <div id="preview-box"></div>
     </div>
-    <div class="pure-u-13-24" id="center-pane">
+    <div class="pure-u-14-24" id="center-pane">
         <div class="pure-u-24-24" id="view-pane">
             <div id="placeholder">
                 <div id="page-logo-lbl">MailX</div>
@@ -41,7 +41,7 @@ $api_key = $_SESSION["MAILX_API_KEY"];
             <textarea class="pure-input" id="send-input" placeholder="Enter your message to send"></textarea>
         </div>
     </div>
-    <div class="pure-u-4-24" id="contacts-pane">
+    <div class="pure-u-3-24" id="contacts-pane">
         <h1 id="logo">MailX</h1>
         <h5 id="contacts-lbl">&#183; Contacts &#183;</h5>
         <div id="contacts-box"></div>
