@@ -66,6 +66,7 @@ html, button, input, select, textarea,
 	overflow-y: auto;
 	overflow-x: hidden;
 	height: 85%;
+	background: rgba(0, 0, 0, 0.02);
 }
 
 #send-box {
@@ -77,6 +78,7 @@ html, button, input, select, textarea,
 	width: 97%;
 	resize: none;
 	font-size: 12px;
+	height: 60px;
 	height: 60px;
 }
 
@@ -126,7 +128,7 @@ html, button, input, select, textarea,
 }
 
 .unread-thread {
-	background: rgba(0, 0, 0, 0.0);
+	background: rgba(0, 0, 0, 0.05);
 }
 
 .read-thread {
@@ -195,10 +197,11 @@ html, button, input, select, textarea,
 }
 
 .message {
-	border: 1px solid rgba(0, 0, 0, 0.2);
+	border: 1px solid rgba(0, 0, 0, 0.1);
 	padding: 10px;
 	border-radius: 3px;
 	margin-bottom: 20px;
+	background: rgba(255, 255 ,255 ,1.0);
 }
 
 #send-box {
