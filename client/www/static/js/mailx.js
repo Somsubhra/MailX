@@ -175,5 +175,7 @@ function load_view(thread_id) {
 function activate_event_listeners() {
     $("#preview-box").on("click", '.thread', function() {
         load_view($(this).attr("data-id"));
+        $(".selected-thread").attr("class", "thread read-thread");
+        $(this).attr("class", "thread read-thread selected-thread");
     });
 }

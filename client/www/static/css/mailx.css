@@ -135,6 +135,10 @@ html, button, input, select, textarea,
 	background: rgba(0, 0, 0, 0.05);
 }
 
+.selected-thread {
+	background: rgba(255, 255 ,255 ,1.0);
+}
+
 .thread:hover {
 	background: rgba(0, 0, 0, 0.1);
 }
