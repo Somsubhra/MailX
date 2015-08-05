@@ -51,7 +51,7 @@ $api_key = $_SESSION["MAILX_API_KEY"];
 <script type="text/javascript" src="static/js/mailx.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $("#send-box").hide();
+        $("#send-pane").hide();
         $("#message-box").hide();
         set_api_key('<?php echo $api_key ?>', function() {
             load_account_details(function() {

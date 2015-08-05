@@ -65,7 +65,7 @@ html, button, input, select, textarea,
 #view-pane {
 	overflow-y: auto;
 	overflow-x: hidden;
-	height: 85%;
+	height: 100%;
 	background: rgba(0, 0, 0, 0.02);
 }
 
@@ -211,10 +211,6 @@ html, button, input, select, textarea,
 	border-radius: 3px;
 	margin-bottom: 20px;
 	background: rgba(255, 255 ,255 ,1.0);
-}
-
-#send-box {
-	margin-bottom: 10px;
 }
 
 .message-header {

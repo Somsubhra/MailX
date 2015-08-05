@@ -148,6 +148,8 @@ function load_preview() {
 
 function load_view(thread_id) {
     var message_box = $("#message-box");
+    var view_pane = $("#view-pane");
+
     message_box.html("");
 
     $.get("api/messages.php",
@@ -161,7 +163,8 @@ function load_view(thread_id) {
 
             $("#placeholder").hide();
             message_box.show();
-            $("#send-box").show();
+            $("#send-pane").show();
+            view_pane.css("height", "85%");
 
             var messages = data.body.messages;
             var num_messages = messages.length;
@@ -170,9 +173,13 @@ function load_view(thread_id) {
                 $("#message-box").append("<div class='message'>" + get_message_view(messages[num_messages - i - 1]) + "</div>");
             }
 
-            var view_pane = $("#view-pane");
             view_pane.scrollTop(view_pane.prop("scrollHeight"));
         }, "json");
+}
+
+function send_message() {
+    var thread_id = $(".selected-thread").attr("data-id");
+    console.log("Sending message to " + thread_id);
 }
 
 function activate_event_listeners() {
@@ -180,5 +187,12 @@ function activate_event_listeners() {
         load_view($(this).attr("data-id"));
         $(".selected-thread").attr("class", "thread read-thread");
         $(this).attr("class", "thread read-thread selected-thread");
+    });
+
+    $("#send-input").keypress(function(e) {
+        if(e.which == 13) {
+            e.preventDefault();
+            send_message();
+        }
     });
 }
