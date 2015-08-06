@@ -4,6 +4,12 @@ Simple to use webmail client
 
 
 ### Run instructions
+* Get sync-engine:
+```
+git submodule init
+git submodule update
+```
+
 * Setup the VM by running the following:
 ```
 vagrant up
