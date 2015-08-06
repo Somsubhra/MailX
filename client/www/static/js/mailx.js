@@ -192,12 +192,10 @@ function load_new_thread_view(name, email) {
         display_name = email;
     }
 
-    console.log("Sending message to " + name + " <" + email + ">");
     $("#placeholder").hide();
     $("#message-box").hide();
     $("#view-pane").css("height", "85%");
     $("#send-pane").show();
-    $(".selected-thread").attr("class", "thread read-thread");
 
     $("#preview-box").prepend("<div data-id='-1' class='thread selected-thread read-thread new-thread'>" +
         "<div class='thread-participants'>" + display_name + "</div>" +
@@ -238,6 +236,7 @@ function activate_event_listeners() {
 
     $("#contacts-box").on("click", '.contact', function() {
         $(".new-thread").remove();
+        $(".selected-thread").attr("class", "thread read-thread");
         load_new_thread_view($(this).attr("data-name"), $(this).attr("data-email"));
     });
 
