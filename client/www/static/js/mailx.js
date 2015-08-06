@@ -188,12 +188,12 @@ function send_message() {
     }
 
     var thread_id = $(".selected-thread").attr("data-id");
-    console.log("Sending message to " + thread_id);
+
     $.post("api/reply.php",
         {
             api_key: api_key,
             thread_id: thread_id,
-            message: send_input.val()
+            message: "<div class='mailx-sent-message'>" + send_input.val() + "</div>"
         }, function(data) {
             console.log(data);
             if(!data.success) {

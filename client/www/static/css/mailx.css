@@ -231,3 +231,8 @@ html, button, input, select, textarea,
 	color: rgba(0, 0, 0, 0.6);
 	margin-bottom: 5px;
 }
+
+.mailx-sent-message {
+	font-size: 12px;
+	color: rgba(0, 0, 0, 0.5);
+}
