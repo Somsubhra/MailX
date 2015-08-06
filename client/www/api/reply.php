@@ -68,7 +68,7 @@ curl_setopt_array($ch, array(
     CURLOPT_POSTFIELDS => json_encode(array(
         "thread_id" => $thread_id,
         "to" => $recipients,
-        "body" => $message,
+        "body" => "<div class='mailx-sent-message'>" . $message . "</div>",
         "version" => 0
     ))
 ));

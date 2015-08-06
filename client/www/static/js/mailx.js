@@ -193,7 +193,7 @@ function send_message() {
         {
             api_key: api_key,
             thread_id: thread_id,
-            message: "<div class='mailx-sent-message'>" + send_input.val() + "</div>"
+            message: send_input.val()
         }, function(data) {
             console.log(data);
             if(!data.success) {
