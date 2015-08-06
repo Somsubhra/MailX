@@ -107,8 +107,6 @@ if($response == FALSE) {
     show_error("cURL error");
 }
 
-die($response);
-
 curl_close($ch);
 
 echo json_encode(array(
