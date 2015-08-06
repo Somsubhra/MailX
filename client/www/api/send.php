@@ -44,6 +44,35 @@ if($db->connect_errno > 0) {
 $account = get_account_from_api_key($api_key, $db);
 $namespace_id = $account["namespace_id"];
 
+$urlToPost = API_ROOT . "n/$namespace_id/send";
+
+$ch = curl_init($urlToPost);
+
+curl_setopt_array($ch, array(
+    CURLOPT_POST => TRUE,
+    CURLOPT_RETURNTRANSFER => TRUE,
+    CURLOPT_HTTPHEADER => array(
+        "Content-Type: application/json"
+    ),
+    CURLOPT_POSTFIELDS => json_encode(array(
+        "body" => "<div class='mailx-sent-message'>" . $message . "</div>",
+        "to" => array(
+            array(
+                "name" => $name,
+                "email" => $email
+            )
+        )
+    ))
+));
+
+$response = curl_exec($ch);
+
+if($response == FALSE) {
+    show_error("cURL error");
+}
+
+curl_close($ch);
+
 echo json_encode(array(
     "success" => true,
     "body" => array(
