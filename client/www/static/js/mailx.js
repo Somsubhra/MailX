@@ -16,7 +16,10 @@ function shorten_string(string, length) {
 }
 
 function get_safe_html(html) {
-    $(html).find('script').remove();
+    if(/<[a-z][\s\S]*>/i.test(html)) {
+        $(html).find('script').remove();
+        return html;
+    }
     return html;
 }
 
@@ -80,7 +83,7 @@ function get_message_view(message) {
     }
     sender_string.replace(/(^\s*,)|(,\s*$)/g, '');
 
-    result = "<div class='message-header'>";
+    result += "<div class='message-header'>";
     result += "<div class='message-subject'>" + message.subject + "</div>";
     result += "<div class='message-sender-time'>On " + timestamp_to_localtime(message.date) + ", " + sender_string + " wrote...</div>";
     result += "</div>";
