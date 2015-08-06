@@ -121,7 +121,9 @@ function load_contacts() {
             var num_contacts = contacts.length;
 
             for(var i = 0; i < num_contacts; i++) {
-                $("#contacts-box").append("<div class='contact'>" + get_contact_display_name(contacts[i]) + "</div>");
+                $("#contacts-box").append("<div data-name='" + contacts[i].name +
+                    "' data-email='" + contacts[i].email + "' class='contact'>" +
+                    get_contact_display_name(contacts[i]) + "</div>");
             }
         }, "json");
 }
