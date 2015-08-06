@@ -38,6 +38,22 @@ if($db->connect_errno > 0) {
 $account = get_account_from_api_key($api_key, $db);
 $namespace_id = $account["namespace_id"];
 
+// Create the recipients list
+$thread_json_content = file_get_contents(API_ROOT . "n/$namespace_id/threads/$thread_id");
+$thread_json = json_decode($thread_json_content);
+
+$recipients = array();
+
+$thread_participants = $thread_json->participants;
+
+foreach($thread_participants as $thread_participant) {
+    if($thread_participant->email == $account["email_address"]) {
+        continue;
+    }
+
+    array_push($recipients, $thread_participant);
+}
+
 // Create the draft
 $urlToPost = API_ROOT . "n/$namespace_id/drafts";
 
@@ -51,7 +67,7 @@ curl_setopt_array($ch, array(
     ),
     CURLOPT_POSTFIELDS => json_encode(array(
         "thread_id" => $thread_id,
-        "to" => array(),
+        "to" => $recipients,
         "body" => $message,
         "version" => 0
     ))
