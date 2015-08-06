@@ -212,18 +212,22 @@ function send_message() {
 
     var thread_id = $(".selected-thread").attr("data-id");
 
-    $.post("api/reply.php",
-        {
-            api_key: api_key,
-            thread_id: thread_id,
-            message: send_input.val()
-        }, function(data) {
-            console.log(data);
-            if(!data.success) {
-                return;
-            }
-            send_input.val("");
-        }, "json");
+    if(thread_id != -1) {
+        $.post("api/reply.php",
+            {
+                api_key: api_key,
+                thread_id: thread_id,
+                message: send_input.val()
+            }, function (data) {
+                console.log(data);
+                if (!data.success) {
+                    return;
+                }
+                send_input.val("");
+            }, "json");
+    } else {
+        // This is a new thread
+    }
 }
 
 function activate_event_listeners() {
