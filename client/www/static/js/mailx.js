@@ -124,7 +124,7 @@ function load_contacts() {
                 if(contacts[i].email ==  account_email_address) {
                     continue;
                 }
-                
+
                 $("#contacts-box").append("<div data-name='" + contacts[i].name +
                     "' data-email='" + contacts[i].email + "' class='contact'>" +
                     get_contact_display_name(contacts[i]) + "</div>");
@@ -187,7 +187,22 @@ function load_view(thread_id) {
 }
 
 function load_new_thread_view(name, email) {
+    var display_name = name;
+    if(display_name == "") {
+        display_name = email;
+    }
+
     console.log("Sending message to " + name + " <" + email + ">");
+    $("#placeholder").hide();
+    $("#message-box").hide();
+    $("#view-pane").css("height", "85%");
+    $("#send-pane").show();
+    $(".selected-thread").attr("class", "thread read-thread");
+
+    $("#preview-box").prepend("<div data-id='-1' class='thread selected-thread read-thread new-thread'>" +
+        "<div class='thread-participants'>" + display_name + "</div>" +
+        "<div class='thread-subject'>Start a new conversation</div>" +
+        " </div>");
 }
 
 function send_message() {
@@ -216,11 +231,13 @@ function send_message() {
 function activate_event_listeners() {
     $("#preview-box").on("click", '.thread', function() {
         load_view($(this).attr("data-id"));
+        $(".new-thread").remove();
         $(".selected-thread").attr("class", "thread read-thread");
         $(this).attr("class", "thread read-thread selected-thread");
     });
 
     $("#contacts-box").on("click", '.contact', function() {
+        $(".new-thread").remove();
         load_new_thread_view($(this).attr("data-name"), $(this).attr("data-email"));
     });
 
