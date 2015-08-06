@@ -178,8 +178,26 @@ function load_view(thread_id) {
 }
 
 function send_message() {
+    var send_input = $("#send-input");
+
+    if($.trim(send_input.val()) == "") {
+        return;
+    }
+
     var thread_id = $(".selected-thread").attr("data-id");
     console.log("Sending message to " + thread_id);
+    $.post("api/send.php",
+        {
+            api_key: api_key,
+            thread_id: thread_id,
+            message: send_input.val()
+        }, function(data) {
+            console.log(data);
+            if(!data.success) {
+                return;
+            }
+            console.log("Message sent successfully");
+        }, "json");
 }
 
 function activate_event_listeners() {

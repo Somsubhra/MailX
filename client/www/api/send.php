@@ -1,6 +1,6 @@
 <?php
 /**
- * POST /api/send.php?api_key=<api_key>&message=<message>
+ * POST /api/send.php?api_key=<api_key>&message=<message>&thread_id=<thread_id>
  */
 
 header("Content-Type: application/json");
@@ -21,7 +21,13 @@ if(!isset($_POST["message"])) {
     show_invalid_params_error();
 }
 
-$message_json = $_POST["message"];
+$message = $_POST["message"];
+
+if(!isset($_POST["thread_id"])) {
+    show_invalid_params_error();
+}
+
+$thread_id = $_POST["thread_id"];
 
 $db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
@@ -32,16 +38,22 @@ if($db->connect_errno > 0) {
 $account = get_account_from_api_key($api_key, $db);
 $namespace_id = $account["namespace_id"];
 
-$urlToPost = API_ROOT . "n/$namespace_id/send";
+// Create the draft
+$urlToPost = API_ROOT . "n/$namespace_id/drafts";
 
 $ch = curl_init($urlToPost);
+
 curl_setopt_array($ch, array(
     CURLOPT_POST => TRUE,
     CURLOPT_RETURNTRANSFER => TRUE,
     CURLOPT_HTTPHEADER => array(
         'Content-Type: application/json'
     ),
-    CURLOPT_POSTFIELDS => json_encode($message_json)
+    CURLOPT_POSTFIELDS => json_encode(array(
+        "thread_id" => $thread_id,
+        "to" => array(),
+        "body" => $message
+    ))
 ));
 
 $response = curl_exec($ch);
@@ -49,6 +61,38 @@ $response = curl_exec($ch);
 if($response == FALSE) {
     show_error("cURL error");
 }
+
+$response_json = json_decode($response, true);
+$draft_id = $response_json["id"];
+
+curl_close($ch);
+
+// Send the draft
+$urlToPost = API_ROOT . "n/$namespace_id/send";
+
+$ch = curl_init($urlToPost);
+
+curl_setopt_array($ch, array(
+    CURLOPT_POST => TRUE,
+    CURLOPT_RETURNTRANSFER => TRUE,
+    CURLOPT_HTTPHEADER => array(
+        'Content-Type: application/json'
+    ),
+    CURLOPT_POSTFIELDS => json_encode(array(
+        "draft_id" => $draft_id,
+        "version" => 2
+    ))
+));
+
+$response = curl_exec($ch);
+
+if($response == FALSE) {
+    show_error("cURL error");
+}
+
+die($response);
+
+curl_close($ch);
 
 echo json_encode(array(
     "success" => true,
