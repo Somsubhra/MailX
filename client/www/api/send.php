@@ -1,6 +1,6 @@
 <?php
 /**
- * POST /api/send.php?api_key=<api_key>&name=<name>&email=<email>&message=<message>
+ * POST /api/send.php?api_key=<api_key>&name=<name>&email=<email>&message=<message>&subject=<subject>
  */
 
 header("Content-Type: application/json");
@@ -22,6 +22,12 @@ if(!isset($_POST["message"])) {
 }
 
 $message = $_POST["message"];
+
+if(!isset($_POST["subject"])) {
+    show_invalid_params_error();
+}
+
+$subject = $_POST["subject"];
 
 if(!isset($_POST["name"])) {
     show_invalid_params_error();
@@ -56,6 +62,7 @@ curl_setopt_array($ch, array(
     ),
     CURLOPT_POSTFIELDS => json_encode(array(
         "body" => "<div class='mailx-sent-message'>" . $message . "</div>",
+        "subject" => $subject,
         "to" => array(
             array(
                 "name" => $name,
