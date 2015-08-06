@@ -52,7 +52,8 @@ curl_setopt_array($ch, array(
     CURLOPT_POSTFIELDS => json_encode(array(
         "thread_id" => $thread_id,
         "to" => array(),
-        "body" => $message
+        "body" => $message,
+        "version" => 0
     ))
 ));
 
@@ -80,7 +81,7 @@ curl_setopt_array($ch, array(
     ),
     CURLOPT_POSTFIELDS => json_encode(array(
         "draft_id" => $draft_id,
-        "version" => 2
+        "version" => 0
     ))
 ));
 
