@@ -199,7 +199,7 @@ function send_message() {
             if(!data.success) {
                 return;
             }
-            console.log("Message sent successfully");
+            send_input.val("");
         }, "json");
 }
 
