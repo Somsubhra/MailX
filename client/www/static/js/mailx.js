@@ -197,7 +197,8 @@ function load_new_thread_view(name, email) {
     $("#view-pane").css("height", "85%");
     $("#send-pane").show();
 
-    $("#preview-box").prepend("<div data-id='-1' class='thread selected-thread read-thread new-thread'>" +
+    $("#preview-box").prepend("<div data-id='-1' data-email='" + email +
+        "' data-name='" + name + "' class='thread selected-thread read-thread new-thread'>" +
         "<div class='thread-participants'>" + display_name + "</div>" +
         "<div class='thread-subject'>Start a new conversation</div>" +
         " </div>");
