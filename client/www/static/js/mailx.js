@@ -186,7 +186,7 @@ function send_message() {
 
     var thread_id = $(".selected-thread").attr("data-id");
     console.log("Sending message to " + thread_id);
-    $.post("api/send.php",
+    $.post("api/reply.php",
         {
             api_key: api_key,
             thread_id: thread_id,

@@ -1,6 +1,6 @@
 <?php
 /**
- * POST /api/send.php?api_key=<api_key>&message=<message>&thread_id=<thread_id>
+ * POST /api/reply.php?api_key=<api_key>&message=<message>&thread_id=<thread_id>
  */
 
 header("Content-Type: application/json");
