@@ -219,15 +219,31 @@ function send_message() {
                 api_key: api_key,
                 thread_id: thread_id,
                 message: send_input.val()
-            }, function (data) {
-                console.log(data);
-                if (!data.success) {
+            }, function(data) {
+                if(!data.success) {
                     return;
                 }
                 send_input.val("");
             }, "json");
     } else {
-        // This is a new thread
+        var new_thread_view = $(".new-thread");
+        var email = new_thread_view.attr("data-email");
+        var name = new_thread_view.attr("data-name");
+
+        $.post("api/send.php",
+            {
+                api_key: api_key,
+                name: name,
+                email: email,
+                subject: "MailX Conversation",
+                message: send_input.val()
+            }, function(data) {
+                if(!data.success) {
+                    return;
+                }
+                send_input.val("");
+                $(".new-thread").remove();
+            }, "json");
     }
 }
 
