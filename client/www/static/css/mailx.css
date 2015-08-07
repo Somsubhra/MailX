@@ -236,3 +236,10 @@ html, button, input, select, textarea,
 	font-size: 12px;
 	color: rgba(0, 0, 0, 0.5);
 }
+
+#search-contact-inp {
+	height: 30px;
+	font-size: 12px;
+	width: 90%;
+	margin-left: 15px;
+}

@@ -43,7 +43,10 @@ $api_key = $_SESSION["MAILX_API_KEY"];
     </div>
     <div class="pure-u-3-24" id="contacts-pane">
         <h1 id="logo">MailX</h1>
-        <h5 id="contacts-lbl">&#183; Contacts &#183;</h5>
+        <h5 id="contacts-lbl" style="margin-bottom: 10px">&#183; Contacts &#183;</h5>
+        <div class="pure-form">
+            <input type="text" placeholder="Enter contact detail" class="pure-input-rounded" id="search-contact-inp">
+        </div>
         <div id="contacts-box"></div>
     </div>
 </div>
