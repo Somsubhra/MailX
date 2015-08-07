@@ -267,4 +267,20 @@ function activate_event_listeners() {
             send_message();
         }
     });
+
+    var search_contact_input = $("#search-contact-input");
+
+    search_contact_input.keypress(function(e) {
+        if(e.which == 13) {
+            e.preventDefault();
+            var email = search_contact_input.val();
+            if(email == "") {
+                return;
+            }
+            $(".new-thread").remove();
+            $(".selected-thread").attr("class", "thread read-thread");
+            load_new_thread_view("", email);
+            search_contact_input.val("");
+        }
+    });
 }
