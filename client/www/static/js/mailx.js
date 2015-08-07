@@ -44,7 +44,7 @@ function timestamp_to_localtime(timestamp) {
 }
 
 function get_contact_display_name(contact) {
-    if(contact.name == "") {
+    if(contact.name == "" || contact.name == null) {
         return contact.email;
     }
     return contact.name;
