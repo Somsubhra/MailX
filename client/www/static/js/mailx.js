@@ -16,11 +16,34 @@ function shorten_string(string, length) {
 }
 
 function get_safe_html(html) {
-    if(/<[a-z][\s\S]*>/i.test(html)) {
-        $(html).find('script').remove();
-        return html;
+    var barrier = document.createElement('DIV');
+    barrier.innerHTML = html;
+
+    var elements = barrier.querySelectorAll('*');
+    for (var i=0, l=elements.length; i<l; i++) {
+        var el = elements[0];
+
+        if (el.tagName === 'SCRIPT') {
+            el.parentNode.removeChild(el);
+        }
+
+        var attributes = el.attributes;
+        for (var j=0, m=attributes.length; j<m; j++) {
+            var attribute = attributes[j];
+            var name = attribute.name.toLowerCase();
+
+            if (name === 'href') {
+                var value = attribute.value;
+                if (value.indexOf('http:') !== 0 || value.indexOf('https:') !==0) {
+                    attribute.value = '#';
+                }
+            } else if (name.indexOf('on') === 0) {
+                attribute.value = '';
+            }
+        }
     }
-    return html;
+
+    return barrier.innerHTML;
 }
 
 function timestamp_to_localtime(timestamp) {
