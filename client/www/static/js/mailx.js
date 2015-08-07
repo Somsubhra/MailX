@@ -20,15 +20,19 @@ function get_safe_html(html) {
     barrier.innerHTML = html;
 
     var elements = barrier.querySelectorAll('*');
-    for (var i=0, l=elements.length; i<l; i++) {
+    for (var i = 0, l = elements.length; i < l; i++) {
         var el = elements[0];
 
         if (el.tagName === 'SCRIPT') {
-            el.parentNode.removeChild(el);
+            $(el).remove();
+        }
+
+        if(el.tagName === 'STYLE') {
+            $(el).remove();
         }
 
         var attributes = el.attributes;
-        for (var j=0, m=attributes.length; j<m; j++) {
+        for (var j = 0, m = attributes.length; j < m; j++) {
             var attribute = attributes[j];
             var name = attribute.name.toLowerCase();
 
