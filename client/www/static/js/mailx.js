@@ -306,4 +306,22 @@ function activate_event_listeners() {
             search_contact_input.val("");
         }
     });
+
+    $("#preview-pane").on("scroll", function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+            console.log("Load more threads");
+        }
+    });
+
+    $("#contacts-pane").on("scroll", function() {
+        if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
+            console.log("Load more contacts");
+        }
+    });
+
+    $("#view-pane").on("scroll", function() {
+        if($(this).scrollTop() < 5) {
+            console.log("Load more messages");
+        }
+    })
 }
