@@ -141,16 +141,11 @@ function load_account_details(callback) {
 }
 
 function load_contacts() {
-    var offset = 0;
-
-    if(num_contacts_loaded != 0) {
-        offset = num_contacts_loaded + 1;
-    }
 
     $.get("api/contacts.php",
         {
             api_key: api_key,
-            offset: offset
+            offset: num_contacts_loaded
         }, function(data) {
             if(!data.success) {
                 return;
@@ -159,6 +154,8 @@ function load_contacts() {
             var num_contacts = contacts.length;
 
             for(var i = 0; i < num_contacts; i++) {
+                num_contacts_loaded++;
+                
                 if(contacts[i].email ==  account_email_address) {
                     continue;
                 }
@@ -166,16 +163,16 @@ function load_contacts() {
                 $("#contacts-box").append("<div data-name='" + contacts[i].name +
                     "' data-email='" + contacts[i].email + "' class='contact'>" +
                     get_contact_display_name(contacts[i]) + "</div>");
-
-                num_contacts_loaded++;
             }
         }, "json");
 }
 
 function load_preview() {
+
     $.get("api/threads.php",
         {
-            api_key: api_key
+            api_key: api_key,
+            offset: num_threads_loaded
         }, function(data) {
             if(!data.success) {
                 return;
@@ -330,15 +327,12 @@ function activate_event_listeners() {
 
     $("#preview-pane").on("scroll", function() {
         if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
-            console.log("Load more threads");
-            console.log("Threads offset: " + num_threads_loaded);
+            load_preview();
         }
     });
 
     $("#contacts-pane").on("scroll", function() {
         if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
-            console.log("Load more contacts");
-            console.log("Contacts offset: " + num_contacts_loaded);
             load_contacts();
         }
     });
