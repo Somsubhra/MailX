@@ -29,7 +29,13 @@ $namespace_id = $account["namespace_id"];
 $ch = curl_init(API_ROOT . "n/$namespace_id/delta/generate_cursor");
 curl_setopt_array($ch, array(
     CURLOPT_POST => TRUE,
-    CURLOPT_RETURNTRANSFER => TRUE
+    CURLOPT_RETURNTRANSFER => TRUE,
+    CURLOPT_HTTPHEADER => array(
+        "Content-Type: application/json"
+    ),
+    CURLOPT_POSTFIELDS => json_encode(array(
+        "start" => time()
+    ))
 ));
 
 $response = curl_exec($ch);
@@ -38,11 +44,11 @@ if($response == FALSE) {
     show_error("cURL error");
 }
 
+$response = json_decode($response);
+
 echo json_encode(array(
     "success" => true,
-    "body" => array(
-        "cursor" => $response
-    )
+    "body" => $response
 ));
 
 $db->close();
