@@ -3,6 +3,10 @@ var account_email_address = "";
 var account_name = "";
 var account_display_name = "";
 
+var num_contacts_loaded = 0;
+var num_messages_loaded = 0;
+var num_threads_loaded = 0;
+
 function set_api_key(param_api_key, callback) {
     api_key = param_api_key;
     callback();
@@ -155,6 +159,8 @@ function load_contacts() {
                 $("#contacts-box").append("<div data-name='" + contacts[i].name +
                     "' data-email='" + contacts[i].email + "' class='contact'>" +
                     get_contact_display_name(contacts[i]) + "</div>");
+
+                num_contacts_loaded++;
             }
         }, "json");
 }
@@ -178,6 +184,7 @@ function load_preview() {
                 }
 
                 $("#preview-box").append("<div data-id='" + threads[i].id + "' class='thread " + el_class + "'>" + get_thread_preview(threads[i]) + "</div>");
+                num_threads_loaded++;
             }
         }, "json");
 }
@@ -205,8 +212,11 @@ function load_view(thread_id) {
             var messages = data.body.messages;
             var num_messages = messages.length;
 
+            num_messages_loaded = 0;
+            
             for(var i = 0; i < num_messages; i++) {
                 $("#message-box").append("<div class='message'>" + get_message_view(messages[num_messages - i - 1]) + "</div>");
+                num_messages_loaded++;
             }
 
             view_pane.scrollTop(view_pane.prop("scrollHeight"));
@@ -314,18 +324,21 @@ function activate_event_listeners() {
     $("#preview-pane").on("scroll", function() {
         if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
             console.log("Load more threads");
+            console.log("Threads offset: " + num_threads_loaded);
         }
     });
 
     $("#contacts-pane").on("scroll", function() {
         if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
             console.log("Load more contacts");
+            console.log("Contacts offset: " + num_contacts_loaded);
         }
     });
 
     $("#view-pane").on("scroll", function() {
         if($(this).scrollTop() < 5) {
             console.log("Load more messages");
+            console.log("Messages offset: " + num_messages_loaded);
         }
     })
 }
