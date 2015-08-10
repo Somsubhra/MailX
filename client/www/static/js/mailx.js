@@ -194,35 +194,32 @@ function load_preview() {
 }
 
 function load_view(thread_id) {
-    var message_box = $("#message-box");
-    var view_pane = $("#view-pane");
 
-    message_box.html("");
+    var scroll = num_messages_loaded == 0;
 
     $.get("api/messages.php",
         {
             api_key: api_key,
-            thread_id: thread_id
+            thread_id: thread_id,
+            offset: num_messages_loaded
         }, function(data) {
             if(!data.success) {
                 return;
             }
 
-            $("#placeholder").hide();
-            message_box.show();
-            $("#send-pane").show();
-            view_pane.css("height", "85%");
-
             var messages = data.body.messages;
             var num_messages = messages.length;
 
             for(var i = 0; i < num_messages; i++) {
-                $("#message-box").append("<div class='message'>" + get_message_view(messages[num_messages - i - 1]) + "</div>");
+                $("#message-box").prepend("<div class='message'>" + get_message_view(messages[i]) + "</div>");
                 num_messages_loaded++;
             }
-
-            view_pane.scrollTop(view_pane.prop("scrollHeight"));
-        }, "json");
+        }, "json").done(function() {
+            if(scroll) {
+                var view_pane = $("#view-pane");
+                view_pane.scrollTop(view_pane.prop("scrollHeight"));
+            }
+        });
 }
 
 function load_new_thread_view(name, email) {
@@ -288,11 +285,25 @@ function send_message() {
 
 function activate_event_listeners() {
     $("#preview-box").on("click", '.thread', function() {
+        var message_box = $("#message-box");
+        var view_pane = $("#view-pane");
+
         num_messages_loaded = 0;
-        load_view($(this).attr("data-id"));
+
+        $("#placeholder").hide();
+        $("#send-pane").show();
+
+        message_box.show();
+        message_box.html("");
+
+        view_pane.css("height", "85%");
+
         $(".new-thread").remove();
+
         $(".selected-thread").attr("class", "thread read-thread");
         $(this).attr("class", "thread read-thread selected-thread");
+
+        load_view($(this).attr("data-id"));
     });
 
     $("#contacts-box").on("click", '.contact', function() {
@@ -338,8 +349,7 @@ function activate_event_listeners() {
 
     $("#view-pane").on("scroll", function() {
         if($(this).scrollTop() < 5) {
-            console.log("Load more messages");
-            console.log("Messages offset: " + num_messages_loaded);
+            load_view($(".selected-thread").attr("data-id"));
         }
     });
 }
