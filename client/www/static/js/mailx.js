@@ -25,7 +25,7 @@ function get_safe_html(html) {
 
     var elements = barrier.querySelectorAll('*');
     for (var i = 0, l = elements.length; i < l; i++) {
-        var el = elements[0];
+        var el = elements[i];
 
         if (el.tagName === 'SCRIPT') {
             $(el).remove();
