@@ -344,7 +344,11 @@ function activate_event_listeners() {
     });
 
     $("#view-pane").on("scroll", function() {
-        if($(this).scrollTop() < 5) {
+        if($(this).scrollTop() == 0) {
+            if(num_messages_loaded == 0) {
+                return;
+            }
+
             load_view($(".selected-thread").attr("data-id"), function() { });
         }
     });
