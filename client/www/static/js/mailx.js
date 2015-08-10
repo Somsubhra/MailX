@@ -193,9 +193,7 @@ function load_preview() {
         }, "json");
 }
 
-function load_view(thread_id) {
-
-    var scroll = num_messages_loaded == 0;
+function load_view(thread_id, callback) {
 
     $.get("api/messages.php",
         {
@@ -214,12 +212,7 @@ function load_view(thread_id) {
                 $("#message-box").prepend("<div class='message'>" + get_message_view(messages[i]) + "</div>");
                 num_messages_loaded++;
             }
-        }, "json").done(function() {
-            if(scroll) {
-                var view_pane = $("#view-pane");
-                view_pane.scrollTop(view_pane.prop("scrollHeight"));
-            }
-        });
+        }, "json").done(callback);
 }
 
 function load_new_thread_view(name, email) {
@@ -303,7 +296,10 @@ function activate_event_listeners() {
         $(".selected-thread").attr("class", "thread read-thread");
         $(this).attr("class", "thread read-thread selected-thread");
 
-        load_view($(this).attr("data-id"));
+        load_view($(this).attr("data-id"), function() {
+            var view_pane = $("#view-pane");
+            view_pane.scrollTop(view_pane.prop("scrollHeight"));
+        });
     });
 
     $("#contacts-box").on("click", '.contact', function() {
@@ -349,7 +345,7 @@ function activate_event_listeners() {
 
     $("#view-pane").on("scroll", function() {
         if($(this).scrollTop() < 5) {
-            load_view($(".selected-thread").attr("data-id"));
+            load_view($(".selected-thread").attr("data-id"), function() { });
         }
     });
 }

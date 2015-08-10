@@ -23,7 +23,7 @@ if(!isset($_GET["thread_id"])) {
 
 $thread_id = $_GET["thread_id"];
 
-$limit = 20;
+$limit = 5;
 
 if(isset($_GET["limit"])) {
     if(is_numeric($_GET["limit"])) {
