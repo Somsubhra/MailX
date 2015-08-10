@@ -141,9 +141,16 @@ function load_account_details(callback) {
 }
 
 function load_contacts() {
+    var offset = 0;
+
+    if(num_contacts_loaded != 0) {
+        offset = num_contacts_loaded + 1;
+    }
+
     $.get("api/contacts.php",
         {
-            api_key: api_key
+            api_key: api_key,
+            offset: offset
         }, function(data) {
             if(!data.success) {
                 return;
@@ -213,7 +220,7 @@ function load_view(thread_id) {
             var num_messages = messages.length;
 
             num_messages_loaded = 0;
-            
+
             for(var i = 0; i < num_messages; i++) {
                 $("#message-box").append("<div class='message'>" + get_message_view(messages[num_messages - i - 1]) + "</div>");
                 num_messages_loaded++;
@@ -332,6 +339,7 @@ function activate_event_listeners() {
         if($(this).scrollTop() + $(this).innerHeight() >= this.scrollHeight) {
             console.log("Load more contacts");
             console.log("Contacts offset: " + num_contacts_loaded);
+            load_contacts();
         }
     });
 
@@ -340,5 +348,5 @@ function activate_event_listeners() {
             console.log("Load more messages");
             console.log("Messages offset: " + num_messages_loaded);
         }
-    })
+    });
 }
