@@ -216,8 +216,6 @@ function load_view(thread_id) {
             var messages = data.body.messages;
             var num_messages = messages.length;
 
-            num_messages_loaded = 0;
-
             for(var i = 0; i < num_messages; i++) {
                 $("#message-box").append("<div class='message'>" + get_message_view(messages[num_messages - i - 1]) + "</div>");
                 num_messages_loaded++;
@@ -290,6 +288,7 @@ function send_message() {
 
 function activate_event_listeners() {
     $("#preview-box").on("click", '.thread', function() {
+        num_messages_loaded = 0;
         load_view($(this).attr("data-id"));
         $(".new-thread").remove();
         $(".selected-thread").attr("class", "thread read-thread");
