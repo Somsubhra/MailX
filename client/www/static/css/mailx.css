@@ -148,9 +148,9 @@ html, button, input, select, textarea,
 
 .thread-participants {
 	font-size: 12px;
-	color: rgba(0, 0, 0, 0.4);
-	font-weight: 600;
+	color: rgba(52, 152, 219, 1.0);
 	display: inline;
+	font-weight: 600;
 }
 
 .thread-subject {
