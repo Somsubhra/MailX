@@ -217,7 +217,7 @@ function load_view(thread_id, callback) {
 
 function load_new_thread_view(name, email) {
     var display_name = name;
-    if(display_name == "") {
+    if(display_name == "" || display_name == "null" || display_name == null) {
         display_name = email;
     }
 
@@ -225,12 +225,15 @@ function load_new_thread_view(name, email) {
     $("#message-box").hide();
     $("#view-pane").css("height", "85%");
     $("#send-pane").show();
+    $("#new-thread-header").show();
 
     $("#preview-box").prepend("<div data-id='-1' data-email='" + email +
         "' data-name='" + name + "' class='thread selected-thread read-thread new-thread'>" +
         "<div class='thread-participants'>" + display_name + "</div>" +
         "<div class='thread-subject'>Start a new conversation</div>" +
         " </div>");
+
+    $("#new-thread-heading").html("Start new conversation with " + display_name);
 }
 
 function send_message() {
@@ -272,6 +275,7 @@ function send_message() {
                 }
                 send_input.val("");
                 $(".new-thread").remove();
+                $("#new-thread-header").hide();
             }, "json");
     }
 }
@@ -284,6 +288,7 @@ function activate_event_listeners() {
         num_messages_loaded = 0;
 
         $("#placeholder").hide();
+        $("#new-thread-header").hide();
         $("#send-pane").show();
 
         message_box.show();
