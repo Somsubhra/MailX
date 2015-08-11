@@ -41,6 +41,30 @@ if(!isset($_POST["email"])) {
 
 $email = $_POST["email"];
 
+$to_list = array();
+
+array_push($to_list, array(
+    "name" => $name,
+    "email" => $email
+));
+
+$participants = "";
+
+if(isset($_POST["participants"])) {
+    $participants = $_POST["participants"];
+}
+
+$participants_list = explode(",", $participants);
+
+foreach($participants_list as $participant) {
+    if(!filter_var($participant, FILTER_VALIDATE_EMAIL) === false) {
+        array_push($to_list, array(
+            "name" =>  "",
+            "email" => $participant
+        ));
+    }
+}
+
 $db = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 if($db->connect_errno > 0) {
@@ -63,12 +87,7 @@ curl_setopt_array($ch, array(
     CURLOPT_POSTFIELDS => json_encode(array(
         "body" => "<div class='mailx-sent-message'>" . $message . "</div>",
         "subject" => $subject,
-        "to" => array(
-            array(
-                "name" => $name,
-                "email" => $email
-            )
-        )
+        "to" => $to_list
     ))
 ));
 

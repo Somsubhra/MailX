@@ -262,6 +262,7 @@ function send_message() {
         var email = new_thread_view.attr("data-email");
         var name = new_thread_view.attr("data-name");
         var subject = "MailX Conversation";
+        var participants = $("#new-thread-participants").val();
 
         var subject_input = $("#new-thread-subject");
 
@@ -275,7 +276,8 @@ function send_message() {
                 name: name,
                 email: email,
                 subject: subject,
-                message: send_input.val()
+                message: send_input.val(),
+                participants: participants
             }, function(data) {
                 if(!data.success) {
                     return;
