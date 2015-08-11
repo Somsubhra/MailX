@@ -261,13 +261,20 @@ function send_message() {
         var new_thread_view = $(".new-thread");
         var email = new_thread_view.attr("data-email");
         var name = new_thread_view.attr("data-name");
+        var subject = "MailX Conversation";
+
+        var subject_input = $("#new-thread-subject");
+
+        if(subject_input.val() != "") {
+            subject = subject_input.val();
+        }
 
         $.post("api/send.php",
             {
                 api_key: api_key,
                 name: name,
                 email: email,
-                subject: "MailX Conversation",
+                subject: subject,
                 message: send_input.val()
             }, function(data) {
                 if(!data.success) {
